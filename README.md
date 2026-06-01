@@ -12,15 +12,17 @@ React operator UI for the voice-ai backend. Lets you start an AI-powered outboun
 ```sh
 # Install dependencies
 bun install   # or: npm install
+
+# Copy the example env file
+cp .env.example .env
 ```
 
-The backend URL is hardcoded in `src/App.tsx`:
+Edit `.env`:
 
-```ts
-client.setConfig({ baseUrl: "http://localhost:3000" });
-```
-
-Change this if the backend runs on a different host or port.
+| Variable | Description |
+|---|---|
+| `VITE_API_BASE` | Backend HTTP base URL, e.g. `http://localhost:3000` |
+| `VITE_WS_BASE` | Backend WebSocket base URL, e.g. `ws://localhost:3000` |
 
 ## Running
 
@@ -42,12 +44,19 @@ bun run lint:fix # auto-fix lint issues
 
 ## Usage
 
-1. Enter a **goal** describing what the AI should accomplish (e.g. "Order a large pepperoni pizza for delivery").
-2. Enter the **phone number** to call in E.164 format (e.g. `+15551234567`).
-3. Click **Start call** — the AI dials the number and begins the conversation.
-4. When the AI needs information from you, a question appears in the chat. Type your answer and press **Send**.
-5. The AI relays your answer to the business and continues.
-6. Click **End call** at any time to hang up manually.
+Enter a **goal** describing what the AI should accomplish (e.g. "Order a large pepperoni pizza for delivery"), then choose a transport:
+
+**Browser** (no phone required):
+1. Select **Browser** and click **Start**.
+2. Click the microphone button to open your mic — the AI speaks directly through your browser.
+3. When the AI needs information from you, a question appears in the chat. Type your answer and press **Send**.
+4. Click **End** to finish.
+
+**Twilio** (outbound phone call):
+1. Select **Twilio**, enter the phone number in E.164 format (e.g. `+15551234567`), and click **Start**.
+2. The AI dials the number and begins the conversation.
+3. When the AI needs information from you, a question appears in the chat. Type your answer and press **Send**.
+4. Click **End** at any time to hang up manually.
 
 ## SDK regeneration
 
